@@ -1,3 +1,5 @@
+[中文](README.md) | [English](README.en.md)
+
 <img src="frontend/public/brand/logo.jpg" height="48" alt="知华科技 ZhuaTech">
 
 # PortCall · 知华船舶挂靠与服务协同
@@ -7,6 +9,8 @@
 **0.1.0 · 公开源码学习版／非商业源码版。未经书面授权不得商用。** 自有代码适用 [LICENSE](LICENSE)，第三方组件及素材保留原许可，见 [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md)。
 
 ## 一次挂靠，几套需要重新确认的时间
+
+系统采用 Java 21／Spring Boot、Vue 3、MySQL 和 Flyway，管理船舶挂靠计划、机构数据范围、服务确认与独立验收。
 
 船代、企业挂靠协调人员和服务提供方，经常各自持有一份时间表。预计到港变更之后，原服务窗口是否还有效、谁已重新确认、实际作业有没有完成，需要逐项核对。PortCall 为单组织建立挂靠、预计时间修订、服务请求与实际作业证据台账，让参与者按自己的数据范围处理待办。
 
@@ -49,17 +53,25 @@ ETA／ETD 与 ATA／ATD 的时间含义参考 [IMO Just in Time Portal](https://
 | --- | --- |
 | ![登录](docs/screenshots/login.jpg) | ![服务商业务端](docs/screenshots/provider-home.jpg) |
 
+登录：会话认证。服务商工作台：仅查看所属机构的服务任务与关联挂靠。
+
 | 挂靠计划与实际时间 | 服务证据 |
 | --- | --- |
 | ![挂靠详情](docs/screenshots/call.jpg) | ![服务详情](docs/screenshots/service.jpg) |
+
+挂靠详情：查看预计与实际时间、计划修订和追加事件。服务详情：记录窗口确认、执行回报与独立验收。
 
 | 后台账号 | 协同统计 |
 | --- | --- |
 | ![账号管理](docs/screenshots/users.jpg) | ![统计](docs/screenshots/dashboard.jpg) |
 
+账号管理：配置账号、部门、角色及机构绑定。统计：汇总授权范围内的挂靠和服务状态。
+
 | 角色权限 | 系统设置 |
 | --- | --- |
 | ![角色](docs/screenshots/roles.jpg) | ![参数](docs/screenshots/settings.jpg) |
+
+角色权限：维护注册接口权限与数据范围。系统设置：调整允许配置的工作空间名称和容量参数。
 
 ## 数据如何保存
 
@@ -86,10 +98,11 @@ V1建立身份和系统目录，V2建立机构、船舶、挂靠、变更、服�
 
 ### 启动一个空库
 
-构建需连接公开依赖与官方镜像源。在根目录运行：
+环境要求为 Docker Engine／Desktop、Compose v2 和 Python 3.10+；构建需连接公开依赖与官方镜像源。在根目录运行：
 
 ```sh
 python3 scripts/init-env.py
+docker compose -p portcall config --quiet
 docker compose -p portcall up -d --build --wait
 ```
 
@@ -156,6 +169,10 @@ python3 scripts/smoke.py --verify
 | 改ADMIN_PASSWORD旧库无变化 | 变量仅初始化，使用本人密码／管理员重置 |
 | 迁移校验失败 | 核对可信脚本和记录，按新版本升级，不删历史 |
 
+## 授权说明
+
+自有代码采用 [ZhuaTech Non-Commercial Source License 1.0](LICENSE)，仅限个人学习、技术研究与非商业交流。未经上海如静知华信息科技有限公司书面授权不得商用；企业私有化部署、收费交付、SaaS 运营、源码转售及收费服务须事先授权。保留署名、官网、版权、许可证和授权联系方式。该许可属于“源码公开、非商业使用”，并非 OSI 标准开源许可。第三方依赖保留各自许可，软件按现状提供，不宣称未经验证的生产可用性。
+
 ## 操作、反馈与授权
 
 日常见 [操作手册](docs/操作手册.md)，请求见 [接口说明](docs/接口说明.md)。贡献与问题反馈见 [CONTRIBUTING.md](CONTRIBUTING.md)，只提供脱敏复现；安全问题通过官网和微信私下反馈，见SECURITY.md，不在公开Issue上传凭证或客户记录。
@@ -171,3 +188,5 @@ python3 scripts/smoke.py --verify
 | 微信 zhuatech | 微信 zhuatech2 |
 | --- | --- |
 | ![微信 zhuatech](docs/images/wechat-zhuatech.png) | ![微信 zhuatech2](docs/images/wechat-zhuatech2.png) |
+
+商业授权或深度定制开发请联系知华科技。
